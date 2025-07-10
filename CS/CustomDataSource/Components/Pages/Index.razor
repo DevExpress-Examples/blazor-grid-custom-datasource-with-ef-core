@@ -1,0 +1,19 @@
+﻿@page "/"
+@using CustomDataSource.Services
+@inject OrdersDataSource DataSource
+@rendermode InteractiveServer
+
+<DxGrid Data="DataSource" KeyFieldName="OrderId" ShowFilterRow="true" ShowGroupPanel="true"
+        ShowGroupedColumns="true" FilterMenuButtonDisplayMode="GridFilterMenuButtonDisplayMode.Always">
+    <Columns>
+        <DxGridDataColumn FieldName="OrderId"></DxGridDataColumn>
+        <DxGridDataColumn FieldName="CustomerId"></DxGridDataColumn>
+        <DxGridDataColumn FieldName="OrderDate"></DxGridDataColumn>
+        <DxGridDataColumn FieldName="RequiredDate"></DxGridDataColumn>
+        <DxGridDataColumn FieldName="Freight"></DxGridDataColumn>
+        <DxGridDataColumn FieldName="ShipAddress"></DxGridDataColumn>
+    </Columns>
+    <TotalSummary>
+        <DxGridSummaryItem FieldName="Freight" SummaryType="GridSummaryItemType.Avg"></DxGridSummaryItem>
+    </TotalSummary>
+</DxGrid>
