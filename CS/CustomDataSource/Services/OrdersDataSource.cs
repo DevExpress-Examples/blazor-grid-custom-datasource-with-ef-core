@@ -16,7 +16,7 @@ public class OrdersDataSource : GridCustomDataSource {
 
     public OrdersDataSource(IDbContextFactory<NorthwindContext> contextFactory) {
         _context = contextFactory.CreateDbContext();
-    }
+    } 
 
     public override async Task<int> GetItemCountAsync(GridCustomDataSourceCountOptions options, CancellationToken cancellationToken) {
         return await ApplyFiltering(options.FilterCriteria, _context.Orders)
