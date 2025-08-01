@@ -3,15 +3,18 @@
 @inject OrdersDataSource DataSource
 @rendermode InteractiveServer
 
-<DxGrid Data="DataSource" KeyFieldName="OrderId" ShowFilterRow="true" ShowGroupPanel="true"
-        ShowGroupedColumns="true" FilterMenuButtonDisplayMode="GridFilterMenuButtonDisplayMode.Always">
+<DxGrid Data="DataSource" 
+        KeyFieldName="OrderId"
+        ShowFilterRow="true"
+        ShowGroupPanel="true"
+        FilterMenuButtonDisplayMode="GridFilterMenuButtonDisplayMode.Always">
     <Columns>
-        <DxGridDataColumn FieldName="OrderId"></DxGridDataColumn>
-        <DxGridDataColumn FieldName="CustomerId"></DxGridDataColumn>
-        <DxGridDataColumn FieldName="OrderDate"></DxGridDataColumn>
-        <DxGridDataColumn FieldName="RequiredDate"></DxGridDataColumn>
-        <DxGridDataColumn FieldName="Freight"></DxGridDataColumn>
-        <DxGridDataColumn FieldName="ShipAddress"></DxGridDataColumn>
+        <DxGridDataColumn FieldName="OrderId" />
+        <DxGridDataColumn FieldName="CustomerId" GroupIndex="0" />
+        <DxGridDataColumn FieldName="OrderDate" />
+        <DxGridDataColumn FieldName="RequiredDate" />
+        <DxGridDataColumn FieldName="Freight" />
+        <DxGridDataColumn FieldName="ShipAddress" Width="25%"/>
     </Columns>
     <TotalSummary>
         <DxGridSummaryItem FieldName="Freight" SummaryType="GridSummaryItemType.Avg"></DxGridSummaryItem>
