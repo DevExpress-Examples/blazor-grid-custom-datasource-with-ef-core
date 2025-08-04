@@ -19,8 +19,8 @@ public class OrdersDataSource : GridCustomDataSource, IDisposable {
         _context = contextFactory.CreateDbContext();
     } 
 
-    public override async Task<int> GetItemCountAsync(GridCustomDataSourceCountOptions options, CancellationToken cancellationToken) {
-        return await ApplyFiltering(options.FilterCriteria, _context.Orders)
+    public override Task<int> GetItemCountAsync(GridCustomDataSourceCountOptions options, CancellationToken cancellationToken) {
+        return ApplyFiltering(options.FilterCriteria, _context.Orders)
             .CountAsync(cancellationToken);
     }
 
@@ -37,10 +37,10 @@ public class OrdersDataSource : GridCustomDataSource, IDisposable {
         return await ApplySorting(options, filteredQuery).ToListAsync(cancellationToken);
     }
 
-    public override async Task<object[]> GetUniqueValuesAsync(GridCustomDataSourceUniqueValuesOptions options, CancellationToken cancellationToken) {
+    public override Task<object[]> GetUniqueValuesAsync(GridCustomDataSourceUniqueValuesOptions options, CancellationToken cancellationToken) {
         var filteredQuery = ApplyFiltering(options.FilterCriteria, _context.Orders);
         var lambda = GetTypedLambda(options.FieldName);
-        return await filteredQuery
+        return filteredQuery
             .Select(lambda)
             .Distinct()
             .OrderBy(x => x)
