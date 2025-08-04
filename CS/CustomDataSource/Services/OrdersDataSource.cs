@@ -10,9 +10,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CustomDataSource.Services;
 
-public class OrdersDataSource : GridCustomDataSource {
+public class OrdersDataSource : GridCustomDataSource, IDisposable {
     protected override Type DataItemType => typeof(Order);
     private readonly NorthwindContext _context;
+    private bool _disposed = false;
 
     public OrdersDataSource(IDbContextFactory<NorthwindContext> contextFactory) {
         _context = contextFactory.CreateDbContext();
@@ -212,6 +213,24 @@ public class OrdersDataSource : GridCustomDataSource {
                     group, summaryLambda);
             default:
                 throw new NotSupportedException(summaryInfo.SummaryType.ToString());
+        }
+    }
+
+    #endregion
+
+    #region IDisposable Implementation
+
+    public void Dispose() {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing) {
+        if (!_disposed) {
+            if (disposing) {
+                _context?.Dispose();
+            }
+            _disposed = true;
         }
     }
 

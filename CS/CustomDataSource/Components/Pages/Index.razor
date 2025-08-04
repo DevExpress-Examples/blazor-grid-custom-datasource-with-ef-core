@@ -2,6 +2,7 @@
 @using CustomDataSource.Services
 @inject OrdersDataSource DataSource
 @rendermode InteractiveServer
+@implements IDisposable
 
 <DxGrid Data="DataSource" 
         KeyFieldName="OrderId"
@@ -20,3 +21,8 @@
         <DxGridSummaryItem FieldName="Freight" SummaryType="GridSummaryItemType.Avg"></DxGridSummaryItem>
     </TotalSummary>
 </DxGrid>
+@code {
+    public void Dispose() {
+        DataSource?.Dispose();
+    }
+}
