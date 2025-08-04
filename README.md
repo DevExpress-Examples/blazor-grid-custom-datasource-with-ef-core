@@ -9,7 +9,7 @@ This example implements a custom data source and binds it to the [DevExpress Bla
 
 ![Custom Data Source](image.png)
 
-Our Blazor Grid component supports [various data binding scenarios](https://docs.devexpress.com/Blazor/403737/components/grid/bind-to-data). If none of standard data sources meets your requirements, you can implement your own data provider. Create a [GridCustomDataSource](https://docs.devexpress.com/Blazor/DevExpress.Blazor.GridCustomDataSource) descendant and assign it to the Grid's [Data](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.Data) property. As a starting point, you can use the [OrdersDataSource](./CS/CustomDataSource/Services/OrdersDataSource.cs) class implementation and modify it based on your data/requirements.
+Our Blazor Grid component supports [various data binding scenarios](https://docs.devexpress.com/Blazor/403737/components/grid/bind-to-data). If none of standard data sources meet your requirements, you can implement your own data provider. Create a [GridCustomDataSource](https://docs.devexpress.com/Blazor/DevExpress.Blazor.GridCustomDataSource) descendant and assign it to the Grid's [Data](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.Data) property. As a starting point, you can use the [OrdersDataSource](./CS/CustomDataSource/Services/OrdersDataSource.cs) class implementation and modify it based on your data/requirements.
 
 ## Specifics and Limitations
 
@@ -28,7 +28,7 @@ A custom data source imposes the following limitations on Grid features:
 
 ## Files to Review
 
-- [OrdersDataSource.cs](./CS/CustomDataSource/Services/OrdersDataSource.cs))
+- [OrdersDataSource.cs](./CS/CustomDataSource/Services/OrdersDataSource.cs)
 - [Index.razor](./CS/CustomDataSource/Components/Pages/Index.razor)
 - [Order.cs](./CS/CustomDataSource/Models/Order.cs)
 
@@ -48,3 +48,4 @@ A custom data source imposes the following limitations on Grid features:
 
 (you will be redirected to DevExpress.com to submit your response)
 <!-- feedback end -->
+
