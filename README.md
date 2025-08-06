@@ -18,13 +18,13 @@ A custom data source imposes the following limitations on Grid features:
 * [Custom sorting](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.CustomSort) is not supported.
 * [Interval](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.GroupInterval)/[custom](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.GroupInterval#custom-grouping) grouping is not supported.
 * [Search](https://docs.devexpress.com/Blazor/404142/components/grid/data-shaping/filter-data/search-box), [filter](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.FilterMode#filter-data-by-display-text), [sorting](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.SortMode#sort-data-by-display-text), and [grouping](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.GroupInterval) by display text are not supported.
+* Sorting, filtering, or grouping data during the _select all_ or _deselect all_ operation processing cancels the operation.
 * [Custom summary calculation](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.CustomSummary) is not supported.
 * [Unbound columns](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn#create-an-unbound-column) are not supported.
 * To call the [SetFocusedDataItemAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.SetFocusedDataItemAsync(System.Object)) method, you should specify the [KeyFieldName](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.KeyFieldName) or [KeyFieldNames](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.KeyFieldNames) property value.
 * `AllPages` mode of the [Select All checkbox](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.KeyFieldNames) is not supported.
 * [SelectAllAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.SelectAllAsync(System.Boolean)) and [DeselectAllAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.DeselectAllAsync) methods load all data to the grid and can reduce overall performance and increase memory consumption.
 * The second call to the [SelectAllAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.SelectAllAsync(System.Boolean)) or [DeselectAllAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.DeselectAllAsync) method cancels the operation initiated by the previously called method.
-* Sorting, filtering, or grouping data during the _select all_ or _deselect all_ operation processing cancels the operation.
 
 ## Files to Review
 
@@ -48,4 +48,5 @@ A custom data source imposes the following limitations on Grid features:
 
 (you will be redirected to DevExpress.com to submit your response)
 <!-- feedback end -->
+
 
