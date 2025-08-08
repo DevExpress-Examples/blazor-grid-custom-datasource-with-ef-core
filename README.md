@@ -3,28 +3,28 @@
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 [![](https://img.shields.io/badge/💬_Leave_Feedback-feecdd?style=flat-square)](#does-this-example-address-your-development-requirementsobjectives)
 <!-- default badges end -->
-# Blazor Grid - Bind to a Custom Data Source using Entity Framework Core
+# Blazor Grid - Custom Data Source Binding using Entity Framework Core
 
-This example implements a custom data source and binds it to the [DevExpress Blazor Grid](https://docs.devexpress.com/Blazor/403143/components/grid) component using [Entity Framework Core](https://learn.microsoft.com/en-us/ef/core/).
+This example uses a custom data source and binds it to the [DevExpress Blazor Grid](https://docs.devexpress.com/Blazor/403143/components/grid) via [Entity Framework Core](https://learn.microsoft.com/en-us/ef/core/).
 
 ![Custom Data Source](image.png)
 
-Our Blazor Grid component supports [various data binding scenarios](https://docs.devexpress.com/Blazor/403737/components/grid/bind-to-data). If none of standard data sources meet your requirements, you can implement your own data provider. Create a [GridCustomDataSource](https://docs.devexpress.com/Blazor/DevExpress.Blazor.GridCustomDataSource) descendant and assign it to the Grid [Data](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.Data) property. As a starting point, you can use the [OrdersDataSource](./CS/CustomDataSource/Services/OrdersDataSource.cs) class implementation and modify it based on your data/requirements.
+Our Blazor Grid component supports [multiple data binding options](https://docs.devexpress.com/Blazor/403737/components/grid/bind-to-data). If our standard data source bindings do not meet specific business requirements, you can implement your own data provider. To do so, create a [GridCustomDataSource](https://docs.devexpress.com/Blazor/DevExpress.Blazor.GridCustomDataSource) descendant and assign it to the Grid [Data](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.Data) property. As a starting point, simply use the [OrdersDataSource](./CS/CustomDataSource/Services/OrdersDataSource.cs) class implementation and modify it based on your use case/requirements.
 
-## Specifics and Limitations
+## Limitations & Considerations
 
-A custom data source imposes the following limitations on Grid features:
+Note the following Grid-related limitations when using a custom data source:
 
-* [Custom sorting](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.CustomSort) is not supported.
-* [Interval](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.GroupInterval)/[custom](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.GroupInterval#custom-grouping) grouping is not supported.
-* [Search](https://docs.devexpress.com/Blazor/404142/components/grid/data-shaping/filter-data/search-box), [filter](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.FilterMode#filter-data-by-display-text), [sorting](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.SortMode#sort-data-by-display-text), and [grouping](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.GroupInterval) by display text are not supported.
-* Sorting, filtering, or grouping data during the _select_/_deselect all_ operation processing cancels the operation.
-* [Custom summary calculation](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.CustomSummary) is not supported.
-* [Unbound columns](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn#create-an-unbound-column) are not supported.
-* To call the [SetFocusedDataItemAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.SetFocusedDataItemAsync(System.Object)) method, you should specify the [KeyFieldName](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.KeyFieldName)/[KeyFieldNames](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.KeyFieldNames) property value.
-* `AllPages` mode of the [Select All checkbox](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.KeyFieldNames) is not supported.
-* [SelectAllAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.SelectAllAsync(System.Boolean)) and [DeselectAllAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.DeselectAllAsync) methods load all data to the grid and can reduce overall performance and increase memory consumption.
-* The second call to the [SelectAllAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.SelectAllAsync(System.Boolean))/[DeselectAllAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.DeselectAllAsync) method cancels the operation initiated by the previously called method.
+* [Custom sorting](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.CustomSort) is unavailable.
+* [Interval](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.GroupInterval)/[custom](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.GroupInterval#custom-grouping) grouping is unavailable.
+* [Search](https://docs.devexpress.com/Blazor/404142/components/grid/data-shaping/filter-data/search-box), [filter](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.FilterMode#filter-data-by-display-text), [sorting](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.SortMode#sort-data-by-display-text), and [grouping](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn.GroupInterval) against display text are unavailable.
+* Sorting, filtering, or data grouping during _select_/_deselect all_ processing cancels the operation.
+* [Custom summary calculation](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.CustomSummary) is unavailable.
+* [Unbound columns](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGridDataColumn#create-an-unbound-column) are unsupported.
+* To call the [SetFocusedDataItemAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.SetFocusedDataItemAsync(System.Object)) method, you must specify the [KeyFieldName](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.KeyFieldName)/[KeyFieldNames](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.KeyFieldNames) property value.
+* `AllPages` mode ([Select All checkbox](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.KeyFieldNames)) is unsupported.
+* [SelectAllAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.SelectAllAsync(System.Boolean)) and [DeselectAllAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.DeselectAllAsync) methods load all data and can impact overall performance and increase memory consumption.
+* A second call to the [SelectAllAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.SelectAllAsync(System.Boolean))/[DeselectAllAsync](https://docs.devexpress.com/Blazor/DevExpress.Blazor.DxGrid.DeselectAllAsync) method cancels the operation initiated by a previously called method.
 
 ## Files to Review
 
@@ -48,6 +48,7 @@ A custom data source imposes the following limitations on Grid features:
 
 (you will be redirected to DevExpress.com to submit your response)
 <!-- feedback end -->
+
 
 
 
