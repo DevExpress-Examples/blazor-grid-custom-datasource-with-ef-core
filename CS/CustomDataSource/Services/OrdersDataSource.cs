@@ -10,16 +10,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CustomDataSource.Services;
 
-public class OrdersDataSource : GridCustomDataSource {
+public class OrdersDataSource : GridCustomDataSource, IDisposable {
     protected override Type DataItemType => typeof(Order);
     private readonly NorthwindContext _context;
+    private bool _disposed = false;
 
     public OrdersDataSource(IDbContextFactory<NorthwindContext> contextFactory) {
         _context = contextFactory.CreateDbContext();
-    }
+    } 
 
-    public override async Task<int> GetItemCountAsync(GridCustomDataSourceCountOptions options, CancellationToken cancellationToken) {
-        return await ApplyFiltering(options.FilterCriteria, _context.Orders)
+    public override Task<int> GetItemCountAsync(GridCustomDataSourceCountOptions options, CancellationToken cancellationToken) {
+        return ApplyFiltering(options.FilterCriteria, _context.Orders)
             .CountAsync(cancellationToken);
     }
 
@@ -36,10 +37,10 @@ public class OrdersDataSource : GridCustomDataSource {
         return await ApplySorting(options, filteredQuery).ToListAsync(cancellationToken);
     }
 
-    public override async Task<object[]> GetUniqueValuesAsync(GridCustomDataSourceUniqueValuesOptions options, CancellationToken cancellationToken) {
+    public override Task<object[]> GetUniqueValuesAsync(GridCustomDataSourceUniqueValuesOptions options, CancellationToken cancellationToken) {
         var filteredQuery = ApplyFiltering(options.FilterCriteria, _context.Orders);
         var lambda = GetTypedLambda(options.FieldName);
-        return await filteredQuery
+        return filteredQuery
             .Select(lambda)
             .Distinct()
             .OrderBy(x => x)
@@ -212,6 +213,24 @@ public class OrdersDataSource : GridCustomDataSource {
                     group, summaryLambda);
             default:
                 throw new NotSupportedException(summaryInfo.SummaryType.ToString());
+        }
+    }
+
+    #endregion
+
+    #region IDisposable Implementation
+
+    public void Dispose() {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing) {
+        if (!_disposed) {
+            if (disposing) {
+                _context?.Dispose();
+            }
+            _disposed = true;
         }
     }
 
